@@ -1,21 +1,27 @@
 import { useState } from "react";
 
 export function TodoForm({ setTodos }) {
-  const [todo, setTodo] = useState("")
+  const [todo, setTodo] = useState("");
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    setTodo(document.getElementById('inputTodo').value)
-    if (todo) {
-      setTodos((todos) => [... todos, todo])
-    }
-    console.log(todo)
-  }
+  const handleSubmit = (e) => {
+   e.preventDefault();
+   if (todo.trim()) {
+    setTodos((todos) => [...todos, todo])
+    setTodo("")
+   }
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
-      <input type="text" id="inputTodo" placeholder="Add an Item" />
-      <button>Add</button>
+        <input
+          type="text"
+          id="inputTodo"
+          placeholder="Add an Item"
+          value={todo} // Controlled input
+          onChange={(e) => setTodo(e.target.value)} // Update state on change
+        />
+        <button>Add</button>
       </form>
     </div>
   );
