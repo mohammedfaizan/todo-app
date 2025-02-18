@@ -1,8 +1,8 @@
-export function TodoItem({ todo }) {
+export function TodoItem({ todo, index, deleteTodo }) {
   return (
     <div className="todo-item">
       <p>{todo}</p>
-      <button>Delete</button>
+      <button onClick={() => deleteTodo(index)}>Delete</button>
     </div>
   );
 }
